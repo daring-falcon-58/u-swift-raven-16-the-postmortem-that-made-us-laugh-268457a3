@@ -55,6 +55,11 @@ def main():
     if written != ENTRY:
         print("gate validation failed: re-read mismatch", file=sys.stderr)
         sys.exit(1)
+    try:
+        validate(written)
+    except ValueError as exc:
+        print(f"gate validation failed on written file: {exc}", file=sys.stderr)
+        sys.exit(1)
     print(ENTRY)
 
 
